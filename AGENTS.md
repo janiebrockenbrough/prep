@@ -35,8 +35,9 @@ At the start of each session:
 1. Check what branch we are on
 2. Create a new branch named `session-N` (e.g. `session-1`, `session-2`)
 3. Do all work for that session on that branch
-4. Commit regularly with meaningful messages (see commit format below)
-5. Do not merge into main — leave that to me
+4. Explain all of the steps thoroughly before asking me to commit 
+5. Commit regularly with meaningful messages (see commit format below)
+6. Do not merge into main — leave that to me
 
 Commit message format: `type(scope): short description`
 Examples:
