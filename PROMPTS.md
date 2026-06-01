@@ -47,7 +47,7 @@ Task: Phase 0, Session 1.
    - What a placeholder class is and why we create structure before logic
 
 
-## Phase 1 - Building O-arm scanner 
+## Phase 1: Session 1 - Building O-arm scanner 
 
 Read AGENTS.md before doing anything else. Confirm:
 - What phase we are on
@@ -94,4 +94,47 @@ Work only in src/scanner/oarm_scanner.py.
 
 Do not run any tests yet — that is Session 2.
 
+## Phase 1: Session 2 - Unit tests for OArmScanner
 
+Read AGENTS.md before doing anything else. Confirm:
+- What phase we are on
+- What tests/test_scanner.py currently contains
+- What pytest does (explain it to me in one paragraph before writing any tests)
+
+Task: Phase 1, Session 2.
+
+Work only in tests/test_scanner.py.
+
+Write the following tests using pytest:
+
+1. test_projection_shape:
+   - Create a Phantom with size=64
+   - Call project(0) and assert the result is a 1D numpy array of length 64
+
+2. test_scan_returns_correct_count:
+   - Create an OArmScanner with num_projections=36
+   - Run scan() on a Phantom
+   - Assert that get_projections() returns exactly 36 projections
+
+3. test_noise_is_added:
+   - Create a Phantom
+   - Get a clean projection at angle=0 directly from phantom.project(0)
+   - Run a full scan with OArmScanner
+   - Get the first stored projection
+   - Assert the two arrays are NOT equal (noise was added)
+
+4. test_noise_is_unbiased:
+   - Run 500 scans on the same phantom at angle=0
+   - Collect the first projection from each scan
+   - Compute the mean difference from the clean projection across all 500 runs
+   - Assert the mean error is within 0.01 of zero (noise is centered at zero)
+
+5. test_angles_cover_full_rotation:
+   - Create OArmScanner with num_projections=180
+   - Run a scan
+   - Assert get_angles() starts near 0 and ends near 360
+   - Assert the array has exactly 180 values
+
+Run all tests with: pytest tests/test_scanner.py -v
+All tests must pass before this session is complete.
+If any test fails, explain why it failed and fix it before moving on.
